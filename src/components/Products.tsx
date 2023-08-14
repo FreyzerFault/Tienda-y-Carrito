@@ -10,7 +10,7 @@ export function Products(props: ProductsProps) {
   return (
     <main className='products'>
       <ul>
-        {props.products.slice(0, 10).map((product) => (
+        {props.products.map((product) => (
           <li key={product.id}>
             <img
               className='product-thumbnail'
