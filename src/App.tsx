@@ -1,60 +1,28 @@
-import { useState, useCallback } from 'react'
+// HOOKS
+import { useState } from 'react'
+import { useFilter } from './hooks/useFilter'
 
 // COMPONENTS
 import { Products } from './components/Products'
-import { FilterSelector } from './components/FilterSelector'
 
 // MODEL
-import { ProductCategory, filterProducts } from './model/product'
-import { Filter, defaultFilter } from './model/filter'
+import { filterProducts } from './model/product'
 
 // SERVICE
 import { getProducts } from './services/products'
+import { Header } from './components/Header'
 
 function App() {
   const [products] = useState(getProducts())
-  const [filter, setFilter] = useState<Filter>(defaultFilter)
-
-  const setCategory = useCallback<(category: ProductCategory) => void>(
-    (category) => {
-      setFilter({
-        category,
-        minPrice: filter.minPrice,
-        maxPrice: filter.maxPrice,
-      })
-    },
-    [filter]
-  )
-
-  const setMinPrice = useCallback<(minPrice: number) => void>(
-    (minPrice) => {
-      setFilter({
-        category: filter.category,
-        minPrice,
-        maxPrice: filter.maxPrice,
-      })
-    },
-    [filter]
-  )
-  const setMaxPrice = useCallback<(maxPrice: number) => void>(
-    (maxPrice) => {
-      setFilter({
-        category: filter.category,
-        minPrice: filter.minPrice,
-        maxPrice,
-      })
-    },
-    [filter]
-  )
+  const { filter, setCategory, setMinPrice, setMaxPrice } = useFilter({})
 
   return (
     <>
-      <h1 className='cart-title'>Shopping Cart 🛒</h1>
-      <FilterSelector
+      <Header
         filter={filter}
-        onChangeCategory={setCategory}
-        onChangeMinPrice={setMinPrice}
-        onChangeMaxPrice={setMaxPrice}
+        setCategory={setCategory}
+        setMinPrice={setMinPrice}
+        setMaxPrice={setMaxPrice}
       />
       <Products products={filterProducts(products, filter)} />
     </>

@@ -18,24 +18,30 @@ export function FilterSelector({
 }: FilterSelectorProps) {
   return (
     <section className='filters'>
-      <select
-        className='filter-category'
-        name='category'
-        onChange={(e) => onChangeCategory(e.target.value as ProductCategory)}
-        value={filter.category}
-      >
-        {Object.values(ProductCategory).map((category) => {
-          return (
-            <option key={category} value={category}>
-              {category}
-            </option>
-          )
-        })}
-      </select>
+      <div className='filter-category'>
+        <label htmlFor='category'>Categoría</label>
+        <select
+          id='category'
+          name='category'
+          onChange={(e) => onChangeCategory(e.target.value as ProductCategory)}
+          value={filter.category}
+        >
+          {Object.entries(ProductCategory).map(
+            ([key, value]: [string, ProductCategory]) => {
+              return (
+                <option key={key} value={value}>
+                  {key}
+                </option>
+              )
+            }
+          )}
+        </select>
+      </div>
 
       <div className='filter-price'>
         <input
           type='range'
+          id='min-price'
           max={MAX_PRICE}
           value={filter.minPrice}
           onChange={(e) => {
@@ -43,11 +49,20 @@ export function FilterSelector({
             if (newMin <= filter.maxPrice) onChangeMinPrice(newMin)
           }}
         />
-        <label>
-          {filter.minPrice} - {filter.maxPrice}
-        </label>
+        <div className='price-label'>
+          <label htmlFor='min-price'>
+            {'['}
+            {filter.minPrice}
+          </label>
+          <span> - </span>{' '}
+          <label htmlFor='max-price'>
+            {filter.maxPrice}
+            {']'} €
+          </label>
+        </div>
         <input
           type='range'
+          id='max-price'
           max={MAX_PRICE}
           value={filter.maxPrice}
           onChange={(e) => {
