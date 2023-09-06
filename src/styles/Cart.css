@@ -1,0 +1,68 @@
+.cart {
+  background: var(--background);
+  display: none;
+  padding: 32px;
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  width: 200px;
+  z-index: 1;
+}
+
+.cart img {
+  aspect-ratio: 16/9;
+  width: 100%;
+}
+
+.cart .product {
+  border-bottom: 1px solid #444;
+  padding-bottom: 16px;
+}
+
+.cart h3 {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart button {
+  padding: 8px;
+}
+
+.cart-button {
+  align-items: center;
+  background: var(--main-color);
+  color: black;
+  border-radius: 9999px;
+  cursor: pointer;
+  display: flex;
+  height: 32px;
+  justify-content: center;
+  padding: 4px;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  transition: all 0.3s ease;
+  width: 32px;
+  z-index: 11;
+}
+
+.cart-button:hover {
+  scale: 1.1;
+}
+
+/* BRO Selector (Sibling) */
+.cart-button ~ input:checked ~ .cart {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+}
+
+.cart .product button {
+  background-color: red;
+  color: black;
+}

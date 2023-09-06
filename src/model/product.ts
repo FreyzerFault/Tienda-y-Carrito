@@ -1,13 +1,13 @@
 import { Filter } from './filter'
 
 export enum ProductCategory {
-  Any = 'any',
-  HomeDecoration = 'home-decoration',
-  Laptops = 'laptops',
-  Smartphones = 'smartphones',
-  Fragrances = 'fragrances',
-  Skincare = 'skincare',
-  Groceries = 'groceries',
+  Todos = 'any',
+  Hogar = 'home-decoration',
+  Portatiles = 'laptops',
+  Móviles = 'smartphones',
+  Perfumes = 'fragrances',
+  Cosméticos = 'skincare',
+  Alimentación = 'groceries',
 }
 
 export type Product = {
@@ -22,6 +22,7 @@ export type Product = {
   category: ProductCategory
   thumbnail: string
   images: string[]
+  quantity: number
 }
 
 export function filterProducts(products: Product[], filter: Filter): Product[] {
@@ -29,7 +30,7 @@ export function filterProducts(products: Product[], filter: Filter): Product[] {
     return (
       product.price >= filter.minPrice &&
       product.price <= filter.maxPrice &&
-      (filter.category === ProductCategory.Any ||
+      (filter.category === ProductCategory.Todos ||
         product.category === filter.category)
     )
   })

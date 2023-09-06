@@ -1,5 +1,6 @@
 import { ProductCategory } from './product'
 
+export const MIN_PRICE = 0
 export const MAX_PRICE = 2000
 
 export type Filter = {
@@ -9,7 +10,7 @@ export type Filter = {
 }
 
 export const defaultFilter: Filter = {
-  category: ProductCategory.Any,
+  category: ProductCategory.Todos,
   minPrice: 0,
   maxPrice: MAX_PRICE,
 }

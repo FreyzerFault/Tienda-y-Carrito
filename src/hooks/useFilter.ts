@@ -1,15 +1,12 @@
-import { useState, useCallback } from 'react'
+import { useCallback, useContext } from 'react'
 
 // MODEL
 import { ProductCategory } from '../model/product'
-import { Filter, defaultFilter } from '../model/filter'
+import { FilterContext } from '../context/filter'
 
-interface useFilterProps {
-  initialFilter?: Filter
-}
-
-export function useFilter({ initialFilter = defaultFilter }: useFilterProps) {
-  const [filter, setFilter] = useState<Filter>(initialFilter)
+export function useFilter() {
+  // const [filter, setFilter] = useState<Filter>(initialFilter)
+  const { filter, setFilter } = useContext(FilterContext)
 
   const setCategory = useCallback<(category: ProductCategory) => void>(
     (category) => {

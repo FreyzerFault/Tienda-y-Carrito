@@ -1,0 +1,72 @@
+.range-double-selector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.range-double-selector > label {
+  margin: 0;
+  padding: 0;
+
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.range-double-selector > input[type='range'] {
+  /* overflow: hidden; */
+  margin: 0;
+
+  -webkit-appearance: none;
+}
+
+/* CHROME */
+.range-double-selector > input[type='range']::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  height: 10px;
+  background-color: var(--background);
+}
+
+.range-double-selector > input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  cursor: ew-resize;
+
+  margin-top: -10px;
+  width: 15px;
+  height: 30px;
+
+  border-radius: 10px;
+  background: var(--main-color);
+  border: 1.5px solid var(--secondary-color);
+}
+.range-double-selector > input[type='range']::-webkit-slider-thumb:hover {
+  border-color: var(--main-color);
+}
+
+/* Relleno de la barra a izquierda (no fufa) */
+.range-double-selector > input[type='range']::-webkit-slider-thumb::before {
+  position: absolute;
+  content: '';
+  height: 10px; /* equal to height of runnable track */
+  width: 500px; /* make this bigger than the widest range input element */
+  left: -502px; /* this should be -2px - width */
+  top: 8px; /* don't change this */
+  background: var(--main-color);
+}
+
+/* FF */
+input[type='range']::-moz-range-progress {
+  background-color: var(--main-color);
+}
+input[type='range']::-moz-range-track {
+  background-color: var(--background);
+}
+
+/* IE */
+input[type='range']::-ms-fill-lower {
+  background-color: var(--main-color);
+}
+input[type='range']::-ms-fill-upper {
+  background-color: var(--background);
+}

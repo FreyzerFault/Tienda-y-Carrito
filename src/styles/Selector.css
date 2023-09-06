@@ -1,0 +1,14 @@
+.selector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 100px;
+}
+.selector > select {
+  width: 100%;
+}
+.selector > label {
+  font-size: 1.2em;
+  font-weight: bold;
+}

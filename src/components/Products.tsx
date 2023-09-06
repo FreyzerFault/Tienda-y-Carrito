@@ -1,31 +1,21 @@
+// STYLES
 import '../styles/Products.css'
+
+// MODEL
 import { Product } from '../model/product'
-import { AddToCartIcon } from './Icons'
+
+// COMPONENTS
+import { DataList } from './DataList'
+import { ProductCard } from './ProductCard'
 
 type ProductsProps = {
   products: Product[]
 }
 
-export function Products(props: ProductsProps) {
+export function Products({ products }: ProductsProps) {
   return (
-    <main className='products'>
-      <ul>
-        {props.products.map((product) => (
-          <li key={product.id}>
-            <img
-              className='product-thumbnail'
-              src={product.thumbnail}
-              alt={product.title}
-            />
-            <h3 className='product-name'>
-              <strong>{product.title}</strong> - {product.price}
-            </h3>
-            <button>
-              <AddToCartIcon />
-            </button>
-          </li>
-        ))}
-      </ul>
-    </main>
+    <section className='products'>
+      <DataList<Product> ComponentTemplate={ProductCard}>{products}</DataList>
+    </section>
   )
 }
