@@ -1,11 +1,11 @@
 import { Product } from '../model/product'
-import { AddToCartIcon, RemoveFromCartIcon } from './Icons'
+import { AddToCartIcon } from './Icons'
 import { useCart } from '../hooks/useCart'
 
 export function ProductCard({ children }: { children: Product }) {
   const product = children
 
-  const { addToCart, isInCart, removeFromCart } = useCart()
+  const { addToCart } = useCart()
 
   return (
     <div className='product' key={product.id}>
